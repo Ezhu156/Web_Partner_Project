@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+	<title></title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.34.0/mapbox-gl.css' rel='stylesheet' />
+	<style>
+		<style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+	</style>
+</head>
+<body>
+<style>
+.mapboxgl-popup {
+    max-width: 400px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+</style>
+	<div id='map' style='width: 1400px; height: 650px;'></div>
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXN0eWNoYW4iLCJhIjoiY2owdmhtcG03MDAzNTMzb2QyandqbmZtaiJ9.MvN66gOy85mT1z_73fVpYw';
+
+		// Set bounds to New York, New York
+		var bounds = [
+		    [-123.486328, 25.120419], // Southwest coordinates
+		    [-67.060547, 49.235534]// Northeast coordinates
+		];
+
+		var map = new mapboxgl.Map({
+		    container: 'map',
+		    style: 'mapbox://styles/mapbox/light-v9',
+		    center: [-100.04, 38.907],
+		    zoom: 1,
+		    maxBounds: bounds // Sets bounds as max
+		});
+
+		map.on('load', function () {
+
+    // Add a layer showing the state polygons.
+    map.addLayer({
+        'id': 'states-layer',
+        'type': 'fill',
+        'source': {
+            'type': 'geojson',
+            'data': 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_1_states_provinces_shp.geojson'
+        },
+        'paint': {
+            'fill-color': 'rgba(200, 100, 240, 0.4)',
+            'fill-outline-color': 'rgba(200, 100, 240, 1)'
+        }
+    });
+});
+
+
+// When a click event occurs near a polygon, open a popup at the location of
+// the feature, with description HTML from its properties.
+map.on('click', function (e) {
+    var features = map.queryRenderedFeatures(e.point, { layers: ['states-layer'] });
+    if (!features.length) {
+        return;
+    }
+
+    var feature = features[0];
+
+    var popup = new mapboxgl.Popup()
+        .setLngLat(map.unproject(e.point))
+        .setHTML(feature.properties.name)
+        .addTo(map);
+});
+
+// Use the same approach as above to indicate that the symbols are clickable
+// by changing the cursor style to 'pointer'.
+map.on('mousemove', function (e) {
+    var features = map.queryRenderedFeatures(e.point, { layers: ['states-layer'] });
+    map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+});
+
+map.on('load', function () {
+
+    map.addLayer({
+        'id': 'california',
+        'type': 'fill',
+        'source': {
+            'type': 'geojson',
+            'data': {
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [[
+                    	[-120.0146484375,42.01665183556825],
+						[-124.25537109375,41.983994270935625],
+						[-124.34326171874999,40.34654412118006],
+						[-122.67333984374999,37.82280243352756],
+						[-121.37695312499999,35.8356283888737],
+						[-120.56396484375,34.56085936708384],
+						[-118.3447265625,33.7243396617476],
+						[-117.13623046874999,32.58384932565662],
+						[-114.5654296875,32.7503226078097],
+						[-114.6533203125,34.97600151317588],
+						[-120.03662109374999,39.04478604850143],
+						[-120.03662109374999,41.934976500546604]]]
+                }
+            }
+        },
+        'layout': {},
+        'paint': {
+            'fill-color': '#088',
+            'fill-opacity': 0.8
+        }
+    });
+    map.addLayer({
+        'id': 'new york',
+        'type': 'fill',
+        'source': {
+            'type': 'geojson',
+            'data': {
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [[
+                    	[-73.355712890625,45.01141864227728],
+                    	[-74.959716796875,45.00365115687186],
+                    	[-76.13525390624999,44.308126684886126],
+                    	[-76.81640625,43.6599240747891],
+                    	[-78.75,43.628123412124616],
+                    	[-79.21142578125,43.45291889355465],
+                    	[-78.936767578125,42.88401467044253],
+                    	[-79.793701171875,42.52069952914966],
+                    	[-79.793701171875,42.00848901572399],
+                    	[-75.43212890625,41.9921602333763],
+                    	[-74.94873046875,41.46742831254425],
+                    	[-73.916015625,40.97989806962013],
+                    	[-74.24560546875,40.53050177574321],
+                    	[-71.8505859375,41.0130657870063],
+                    	[-72.26806640624999,41.16211393939692],
+                    	[-73.795166015625,40.83874913796459],
+                    	[-73.289794921875,42.85985981506279],
+                    	[-73.3447265625,44.95702412512118]]]
+                }
+            }
+        },
+        'layout': {},
+        'paint': {
+            'fill-color': '#088',
+            'fill-opacity': 0.8
+        }
+    });
+    map.addLayer({
+        'id': 'massachusettes',
+        'type': 'fill',
+        'source': {
+            'type': 'geojson',
+            'data': {
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [[
+                    	[-73.2733154296875,42.74701217318067],
+                    	[-73.5150146484375,42.09007006868398],
+                    	[-73.49853515625,42.049292638686836],
+                    	[-71.817626953125,42.02889410108475],
+                    	[-71.806640625,42.004407212963585],
+                    	[-71.3726806640625,42.01665183556825],
+                    	[-71.378173828125,41.902277040963696],
+                    	[-71.3397216796875,41.902277040963696],
+                    	[-71.334228515625,41.77950486590359],
+                    	[-71.1419677734375,41.63597302844412],
+                    	[-71.1199951171875,41.51680395810118],
+                    	[-70.9222412109375,41.57847058443442],
+                    	[-70.7135009765625,41.75492216766298],
+                    	[-70.6036376953125,41.763117447005875],
+                    	[-70.6640625,41.53325414281322],
+                    	[-69.9554443359375,41.69752591075902],
+                    	[-69.9884033203125,41.97582726102573],
+                    	[-70.081787109375,42.05337156043361],
+                    	[-70.24108886718749,42.07783959017503],
+                    	[-70.20263671875,42.032974332441405],
+                    	[-70.037841796875,41.91454130182335],
+                    	[-70.0543212890625,41.79179268262892],
+                    	[-70.33447265624999,41.70982942509964],
+                    	[-70.5377197265625,41.82045509614034],
+                    	[-70.5596923828125,41.95131994679697],
+						[-70.7080078125,41.99624282178583],
+						[-70.6365966796875,42.094146370922736],
+						[-70.828857421875,42.26917949243506],
+						[-71.004638671875,42.26511445833756],
+						[-71.0101318359375,42.4112905190282],
+						[-70.8233642578125,42.524748042348165],
+						[-70.587158203125,42.65012181368022],
+						[-70.740966796875,42.68243539838623],
+						[-70.828857421875,42.84375132629021],
+						[-70.90576171875,42.89206418807337],
+						[-71.070556640625,42.827638636242284],
+						[-71.30126953124999,42.70262285884388],
+						[-73.245849609375,42.755079545072135]]]
+                }
+            }
+        },
+        'layout': {},
+        'paint': {
+            'fill-color': '#088',
+            'fill-opacity': 0.8
+        }
+    });
+});
+
+
+</script>
+	</script>
+
+</script>
+</body>
+</html>
