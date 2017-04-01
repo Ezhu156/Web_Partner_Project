@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+	<title> STACKS </title>
+	<style>
+		#main{
+			width: 1200px;
+			margin:auto;
+		}
+		h1{
+			font-family: 'Slabo 27px, serif';
+			font-size: 70px;
+			margin-top: 30px;
+			color: #575757;
+			margin-bottom: 15px;
+			/*margin-left: 425px;*/
+		}
+		#container{
+			width: 370px;
+			height: 527px;
+			border: 5px solid #3595A1;
+			margin-top: 30px;
+			display: inline-block;
+		}
+		#slideshow{
+			float: right;
+			margin-top: 30px;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="main">
+		<center><h1> STACKS </h1></center>
+		<div id="container">
+		</div>
+		<div id="slideshow">
+			<img id="one" src="Images/Stacks/1.jpg">
+		</div>
+		<!--<img id="dropDown" src="Corgi.jpg">-->
+	</div>
+<script> 
+	var img= document.querySelector('img');
+	function changeSource(){
+		var currentSource = img.getAttribute('src');
+		if (currentSource == "Images/Stacks/1.jpg"){
+			img.setAttribute("Src", "Images/Stacks/2.jpg");
+		} else if (currentSource == "Images/Stacks/2.jpg"){
+			img.setAttribute("Src", "Images/Stacks/3.jpg");
+		} else if (currentSource == "Images/Stacks/3.jpg"){
+			img.setAttribute("Src", "Images/Stacks/4.jpg");
+		} else if (currentSource == "Images/Stacks/4.jpg"){
+			img.setAttribute("Src", "Images/Stacks/5.jpg");
+		} else if (currentSource == "Images/Stacks/5.jpg"){
+			img.setAttribute("Src", "Images/Stacks/6.jpg");
+		} else{
+			img.setAttribute("src","Images/Stacks/1.jpg");
+		}
+		console.log(currentSource);
+	}
+	function changeSize(){
+		img.style.width = 800 + 'px';
+		img.style.height = 533 + 'px';
+	}
+	function rotate(){
+		img.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+	}
+	//img.addEventListener('click',changeSource);
+	setInterval(changeSource,2000); //every 2 seconds, the image changes
+	setInterval(changeSize);
+	//setInterval(rotate, 1000);
+</script>
+</body>
+</html>
