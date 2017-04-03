@@ -16,12 +16,57 @@
 			margin-bottom: 15px;
 			margin-left: 300px;
 		}
-		#container{
+#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,16 +79,32 @@
 	<div id="main">
 		<h1> BLUESTONE LANE </h1>
 		<div id="container">
+			<div id="address">
+				<p> 55 Greenwich Ave <br> New York, NY 10014 </p>
+				<p id="note"> *Various Locations </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.4/5 </p>
+				<p class="rate" id="two"> ZOMATO <br> 2.8/5 </p>
+				<p class="rate"> FOURSQUARE <br> 8.7/10 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Bluestone_Lane/1.jpg">
+			<img id="img" src="Images/Bluestone_Lane/1.jpg">
 
 		</div>
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Bluestone_Lane/1.jpg"){
@@ -74,6 +135,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["The food here is really gooooodd. And super Instagram worthy if that's what your into! My friend and I came on a Tuesday afternoon and were seated right away. We both decided on brekkie boards and did not regret our decisions. My friend loved the avocado toast ( we also added the salmon) and I loved the granola with yogurt. Honestly it was the best granola I ever had and I would love to go back to get it again ! -Ann S.", "Very small coffee nook, but worth the wait.  Their lattes are beautiful. If you're feeling adventurous, order their beetroot latte!  The color is stunning, and the flavor is light.  Definitely worth it for the photo!  I'm so glad that the waitress coaxed us into ordering one. -Hadley H.", "Came here for Brunch with friends. Our server was so sweet and had a great personality. The service in general was really strong as we had many people touch the table throughout our stay. My friends and I really enjoyed the food. The smoked salmon breakfast bowl is great and so was the dark forest waffle. Will be back soon to try more items off the menu. -Daniel L." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>
