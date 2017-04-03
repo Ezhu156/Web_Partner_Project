@@ -34,9 +34,15 @@
 			margin-top: 15px;
 		}
 		#review p{
+			width:290px;
 			color: #A8A8A8;
-			font-size: 19px;
+			font-size: 20px;
 			margin-left: 25px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
 		}
 		#rating{
 			color: #A8A8A8;
@@ -71,7 +77,9 @@
 			</div>
 			<hr>
 			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
 				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
 			</div>
 			<hr>
 			<div id="rating">
@@ -82,14 +90,14 @@
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Seoul_Soulongtang/1.jpg">
+			<img class="img" src="Images/Seoul_Soulongtang/1.jpg">
 
 		</div>
 
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('.img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Seoul_Soulongtang/1.jpg"){
@@ -121,12 +129,21 @@
 	//setInterval(rotate, 1000);
     var text=["I don't know if 'pure' is the word to describe it but that is exactly what the bone broth tastes like and it was great to be able to add salt and scallions as your tastebuds see fit. REALLY good.  The ribs were good but I've had better. -Kim M.", "Now that I've discovered Seoul Soulongtang a couple weeks ago, my life is once again complete! I've been holding off on writing a review because my first two visits, I only had their budae jjigae, but now that I've come with a larger party and tried more dishes, I'm ready to lock in the five-star love for Seoul Soulongtang! -Debra L.", "Some of the best Korean food in Boston. I've been to Seoul Soulongtang a few times now and can attest to its quality. The dishes are generally authentic, they use good ingredients, and prepare delicious, fresh food. -Augusto T." ];
     var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
     var elem = document.getElementById("changeText");
-    setInterval(change, 2000);
-    function change() {
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
      elem.innerHTML = text[counter];
         counter++;
-        if(counter >= text.length) { counter = 0; }
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
     }
 </script>
 </body>
