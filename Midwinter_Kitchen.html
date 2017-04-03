@@ -14,34 +14,87 @@
 			margin-top: 30px;
 			color: #575757;
 			margin-bottom: 15px;
-			/*margin-left: 425px;*/
 		}
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
+
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
 		}
-
 	</style>
 </head>
 <body>
 	<div id="main">
 		<center><h1> MIDWINTER KITCHEN </h1></center>
 		<div id="container">
+			<div id="address">
+				<p> 327 2nd Ave <Br> New York, NY 10003 </p>
+				<!-- <p id="note"> *Various Locations </p> -->
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.3/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.5/5 </p>
+				<p class="rate"> FOURSQUARE <br> 8.9/10 </p>
+			</div>
 		</div>
 		<div id="slideshow">
-			<img id="one" src="Images/Midwinter_Kitchen/1.jpg">
+			<img id="img" src="Images/Midwinter_Kitchen/1.jpg">
 		</div>
 		<!--<img id="dropDown" src="Corgi.jpg">-->
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Midwinter_Kitchen/1.jpg"){
@@ -70,6 +123,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	setInterval(changeSize);
 	//setInterval(rotate, 1000);
+	var text=["I went here Friday afternoon, and there wasn't a big crowd at all. They have a decently sized place to be in New York too. As soon as we got in we were seated and water was brought to our table. The waitress recommended the eggs and cheddar sandwich with added bacon. The sandwich was a very generous size and was delicious. The biscuit that held the condiments was the best part, so fluffy and perfectly cooked. They also had fresh squeezed orange juice with or with out pulp. I would definitely recommend this place to anyone. -Miles B.", "Went here for brunch last weekend 3/25/17. I had the braised beef hash and coffee she had the French toast. Decor is modern, nice big windows and the food was great. No lattes here and for a brunch place that's kinda weird. Other than that, I'd recommend. -Scott W.", "I loved midwinter immediately for their fresh and known ingredients. It's very easy to understand where the ingredients come from because you see pictures of their family farm all over the place. I felt connected to the source of my food and felt very reassured about what was going into my mouth. -Heewon Y." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

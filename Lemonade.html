@@ -14,34 +14,87 @@
 			margin-top: 30px;
 			color: #575757;
 			margin-bottom: 15px;
-			/*margin-left: 425px;*/
 		}
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
+
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
 		}
-
 	</style>
 </head>
 <body>
 	<div id="main">
 		<center><h1> LEMONADE </h1></center>
 		<div id="container">
+			<div id="address">
+				<p> 1152 Burlingame Ave <Br> Burlingame, CA 94010 </p>
+				<p id="note"> *Various Locations </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.3/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.3/5 </p>
+				<p class="rate"> FOURSQUARE <br> 7.8/10 </p>
+			</div>
 		</div>
 		<div id="slideshow">
-			<img id="one" src="Images/Lemonade/1.jpg">
+			<img id="img" src="Images/Lemonade/1.jpg">
 		</div>
 		<!--<img id="dropDown" src="Corgi.jpg">-->
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Lemonade/1.jpg"){
@@ -70,6 +123,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	setInterval(changeSize);
 	//setInterval(rotate, 1000);
+	var text=["I had really high hopes for lemonade when they first came to Burlingame but honestly can't say I'm too too impressed. You get to pick and choose small salads and dishes which ends up being pretty pricey since the portions are small and you have to get a few. They also have some warm dishes, sandwiches, desserts and of course, lemonade. It's an ok lunch spot to go to if on the Ave, but not some place that makes me say wow and want to go back all the time. -Samantha G.", "I've been wanting to try this chain forever but never got the chance to in LA. Finally it's in the bay ! I went on a sunday around 1pm and this place was packed. The setup of this place is a bit weird. And a bit hard to navigate through. But it's a bright and airy space. So the concept of this place is pretty much like cafeteria style. You just pick up a tray and choose what you would like and you get a number that adds it all up for you at the end. -Celia Z.", "Been here twice and have been pleased each time.  My kids really like the food too, which is a plus for me since they tend to be picky.  I like that you can order several dishes and make a great meal!  There are so many salad type dishes to choose from.  They also offer sandwiches and other warm foods like short ribs, thai meatballs, mac & cheese, etc.  They also offer great desserts and several different flavors of lemonade.  Defintely a great place to go to get items to go or dine in. -Nancy C." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

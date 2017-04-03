@@ -14,34 +14,87 @@
 			margin-top: 30px;
 			color: #575757;
 			margin-bottom: 15px;
-			/*margin-left: 425px;*/
 		}
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
+
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
 		}
-
 	</style>
 </head>
 <body>
 	<div id="main">
 		<center><h1> SIDEWALK JUICE </h1></center>
 		<div id="container">
+			<div id="address">
+				<p> 3287 21st St <Br> San Francisco, CA 94110 </p>
+				<!-- <p id="note"> *Various Locations </p> -->
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.2/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.4/5 </p>
+				<p class="rate"> FOURSQUARE <br> 8.5/10 </p>
+			</div>
 		</div>
 		<div id="slideshow">
-			<img id="one" src="Images/Sidewalk_Juice/1.jpg">
+			<img id="img" src="Images/Sidewalk_Juice/1.jpg">
 		</div>
 		<!--<img id="dropDown" src="Corgi.jpg">-->
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Sidewalk_Juice/1.jpg"){
@@ -70,6 +123,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	setInterval(changeSize);
 	//setInterval(rotate, 1000);
+	var text=["Unlike the other location, this is a walk-up window. Service is friendly and fast, produce is fresh. The blueberry-almond smoothie is amazing: slightly sweet with vanilla yogurt and almond butter, plenty of berries, almond milk, and granola for crunch. The $6.50 portion is more than enough to share, and they'll split it into two cups if you ask nicely. -Stefany V.", "Is being miserable a prerequisite to work here?! The employees are seriously the worst when it comes to customer service. My hubby and I both ordered an Acai bowl. He got the original and I got the one with pineapple. His looked really good and had both granola and coconut, but mine was seriously covered in a heap of coconut! So gross and it took away from the rest of the ingredients. The actual Acai was too thick for me, but my hubby seemed to like it that way. -Steph L.", "Their smoothies are good but their acai bowls suck. They have a doughlike texture instead of a liquid fresh feel. Never getting an acai bowl here. -Priyanka S." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

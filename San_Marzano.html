@@ -14,34 +14,87 @@
 			margin-top: 30px;
 			color: #575757;
 			margin-bottom: 15px;
-			/*margin-left: 425px;*/
 		}
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
+
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
 		}
-
 	</style>
 </head>
 <body>
 	<div id="main">
 		<center><h1> SAN MARZANO </h1></center>
 		<div id="container">
+			<div id="address">
+				<p> 117 2nd Ave <Br> New York, NY 10003 </p>
+				<!-- <p id="note"> *Various Locations </p> -->
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.9/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.2/5 </p>
+				<p class="rate"> FOURSQUARE <br> 9.1/10 </p>
+			</div>
 		</div>
 		<div id="slideshow">
-			<img id="one" src="Images/San_Marzano/1.jpg">
+			<img id="img" src="Images/San_Marzano/1.jpg">
 		</div>
 		<!--<img id="dropDown" src="Corgi.jpg">-->
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/San_Marzano/1.jpg"){
@@ -70,6 +123,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	setInterval(changeSize);
 	//setInterval(rotate, 1000);
+	var text=["This place is definitely very reasonably priced - $9 for pastas and $4 for mimosas! Came here for brunch Saturday and while there were many free tables apparently they were already all reserved. Luckily the bar was first come first serve so we took two spots at the bar. -Jen L.", "If you want delicious, homemade and super affordable pasta in the city, you've got to come to San Marzano. I literally do not know how they can afford to charge just $9 flat for all their pastas and still make their rent. However they manage this feat, its a welcome Godsend for all the happy customers who come. -Eric A.", "A review on the brunch. Arrived a little before noon and there was already a decent amount of people waiting. We were told our wait was 45 minutes but fortunately my girlfriend and I did not have to wait long because a table for two was available pretty fast. The atmosphere of the restaurant is pretty typical of a brunch place - loud but great for friends to catch up and get over their hangovers. -Amber C." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

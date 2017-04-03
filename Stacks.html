@@ -14,34 +14,87 @@
 			margin-top: 30px;
 			color: #575757;
 			margin-bottom: 15px;
-			/*margin-left: 425px;*/
 		}
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
+
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
 		}
-
 	</style>
 </head>
 <body>
 	<div id="main">
 		<center><h1> STACKS </h1></center>
 		<div id="container">
+			<div id="address">
+				<p> 361 California Dr <Br> Burlingame, CA 94010 </p>
+				<!-- <p id="note"> *Various Locations </p> -->
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.5/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 3.9/5 </p>
+				<p class="rate"> FOURSQUARE <br> 7.7/10 </p>
+			</div>
 		</div>
 		<div id="slideshow">
-			<img id="one" src="Images/Stacks/1.jpg">
+			<img id="img" src="Images/Stacks/1.jpg">
 		</div>
 		<!--<img id="dropDown" src="Corgi.jpg">-->
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Stacks/1.jpg"){
@@ -70,6 +123,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	setInterval(changeSize);
 	//setInterval(rotate, 1000);
+	var text=["CA solid meh breakfast spot.  The staff is great, super friendly and helpful.  The street parking is metered but I didnt have a problem finding parking on a Thursday at 12PM.  The setting feels a little old but it didnt feel too dirty, a classic diner feel.  My only issue is that they sat me right next to the bathroom when there were plenty of seats available throughout the restaurant, maybe I'm just not pretty enough. -Kenneth L.", "We really like stacks. It's perfect for us since we love bringing our little pooch with us when we are out and about (outdoor seating). Today's breakfast was great. I had the eggs Benedict and. A cappuccino. The cappuccino needs work but the breakfast was in point. My gf had the crab crepe, which she really enjoyed. Since I am a fatty, I also ordered strawberry waffles for us to share. Yummmmm. :). -Steve J.", "One of our favorite places to have breakfast. We take visitors there to impress them. The food is great and the portions large (maybe too large). I like all of their versions of eggs benedict, eggs Blackstone, and their pancakes. Go early to avoid waiting. -Ralph R." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

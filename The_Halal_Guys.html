@@ -14,34 +14,87 @@
 			margin-top: 30px;
 			color: #575757;
 			margin-bottom: 15px;
-			/*margin-left: 425px;*/
 		}
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
+
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
 		}
-
 	</style>
 </head>
 <body>
 	<div id="main">
 		<center><h1> THE HALAL GUYS </h1></center>
 		<div id="container">
+			<div id="address">
+				<p> E 14th St <Br> New York, NY 10003 </p>
+				<!-- <p id="note"> *Various Locations </p> -->
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.8/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.5/5 </p>
+				<p class="rate"> FOURSQUARE <br> 9.2/10 </p>
+			</div>
 		</div>
 		<div id="slideshow">
-			<img id="one" src="Images/The_Halal_Guys/1.jpg">
+			<img id="img" src="Images/The_Halal_Guys/1.jpg">
 		</div>
 		<!--<img id="dropDown" src="Corgi.jpg">-->
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/The_Halal_Guys/1.jpg"){
@@ -70,6 +123,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	setInterval(changeSize);
 	//setInterval(rotate, 1000);
+	var text=["Yum! The white sauce is delectable, the hot sauce is unbearable (in a good way), the service is quick and rude, and the food gives the impression that it'll make you sick, and sometimes it does, but it's just so yummy and cheap that you don't care! In short, all the hallmarks of great street meat- except in a brick and mortar location!  -D M.", "This place is a decent alternative to the other storefronts along the same street milking you for cash, KFC, or in the case of NYU, your dining hall. This is not a substitute for the real experience which is to stand on line and wait for your turn for a steamy platter of lamb/chicken over rice, and then figure out where you have to eat it. -Henry M.", "One of the places you must try when in NYC. The lines may sometimes be long but luckily when I went the line was very short. I ordered the small platter combo (chicken and beef) that comes with lettuce, tomatos, bread, white sauce, red sauce (caution: red sauce is very spicy) and rice. The small platter costs 6.99 which is probably the cheapest food portion size in NYC. There are seating areas but it's very limited. -Anh P." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

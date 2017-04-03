@@ -14,34 +14,87 @@
 			margin-top: 30px;
 			color: #575757;
 			margin-bottom: 15px;
-			/*margin-left: 425px;*/
 		}
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
+
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
 		}
-
 	</style>
 </head>
 <body>
 	<div id="main">
 		<center><h1> KHE-YO </h1></center>
 		<div id="container">
+			<div id="address">
+				<p> 157 Duane St <Br> New York, NY 10013 </p>
+				<!-- <p id="note"> *Various Locations </p> -->
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.0/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.5/5 </p>
+				<p class="rate"> FOURSQUARE <br> 9.0/10 </p>
+			</div>
 		</div>
 		<div id="slideshow">
-			<img id="one" src="Images/Khe/1.jpg">
+			<img id="img" src="Images/Khe/1.jpg">
 		</div>
 		<!--<img id="dropDown" src="Corgi.jpg">-->
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Khe/1.jpg"){
@@ -70,6 +123,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	setInterval(changeSize);
 	//setInterval(rotate, 1000);
+	var text=["Firstly, this place has great cocktails! Came on a Saturday night and the vibe was just right. Delicious food with a laos influence. Don't miss the sesame beef jerky, chili prawns, papaya salad, and the quail.   I would absolutely come back here in a minute! -Kirsten C.", "Khe-yo was definitely a delicious experience, but I wish the service were a little bit quicker. I walked in a few minutes after the restaurant opened for lunch and there was only one other table (seating 2 people) there. The server was really friendly, but seemed preoccupied. Despite that I would still go back. The menu wasn't daunting and they only had a few items to choose from, which I actually kind of like--it's a nice change of pace from always having to choose between 10948028932 menu items. I had the chicken with rice noodles--it was basically vermicelli. I was craving SE Asian food for the longest time and this place hit the spot..I mean, BULLSEYE. The sauce was just tangy enough and the vegetables and herbs were fresh and had a great crunch to them. The noodles were cooked perfectly and the chicken wasn't dry, but moist and juicy too. The portion size was just right for me--I left feeling really full, but ate everything in my bowl. That being said though, this place is on the pricier end, especially for how SE Asian food is usually charged; probably because of location and atmosphere. -A Sofia C.", "Came here for drinks: glass of rose was tasty; cocktails {Thai Chili, Infused, Vodka, Cucumber} ($13) and {Mezcal, Strega, Sweet Vermouth, & Lemon} ($14) were delicious.  Service was friendly and unobtrusive. -Mickey M." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

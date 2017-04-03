@@ -14,34 +14,87 @@
 			margin-top: 30px;
 			color: #575757;
 			margin-bottom: 15px;
-			/*margin-left: 425px;*/
 		}
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
+
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
 		}
-
 	</style>
 </head>
 <body>
 	<div id="main">
 		<center><h1> BOBA GUYS </h1></center>
 		<div id="container">
+			<div id="address">
+				<p> 23 Clinton St <Br> New York, NY 10002 </p>
+				<p id="note"> *Various Locations </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.2/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.6/5 </p>
+				<p class="rate"> FOURSQUARE <br> 8.9/10 </p>
+			</div>
 		</div>
 		<div id="slideshow">
-			<img id="one" src="Images/Boba_Guys/1.jpg">
+			<img id="img" src="Images/Boba_Guys/1.jpg">
 		</div>
 		<!--<img id="dropDown" src="Corgi.jpg">-->
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Boba_Guys/1.jpg"){
@@ -70,6 +123,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	setInterval(changeSize);
 	//setInterval(rotate, 1000);
+	var text=["CBoba guys is great. I got the oolong milk tea with grass jelly and zero sugar (as I always do). My gf got a Thai iced tea which was bomb. Why was it bomb? Mainly because it had sooooooo much sugar in it it was as if a bomb had exploded into the Thai iced tea and it just floated around. But hey that was good. My sister told me a story about how she met the boba guys owner in SF. What a concept!  -Willy X.", "Super glad these guys are over here in NY. Boba guys were my favorite boba guys, well one of them in the Bay Area. I had their horchata and unfortunately I didn't enjoy it as much as other people did. The actual quality of the boba was on point just like back home. My fiancé had the strawberry matcha and it was delicious except I'm not a big matcha fan. Later did I find out what the strawberry cali pico is. I'll definitely get that next time -Heather S.", "Boba guys has set the standard for bubble tea. It is nestled on Clinton street near prohibition bakery and Clinton street baking company. It's a small shop with always a huge line especially at all hours on weekends. All their teas uses loose leaf and high quality matcha. This review will be short as most people who read my reviews - I tend to go a few times before writing a review. I can say I've been here more than a few times and have tried the recommended premium ones and the seasonal specials - none have disappointed. For first timers - highly recommend the matcha latte or jasmine milk tea - both are excellent. From there - you can spread your wings and tastebuds go! -Kevin H." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

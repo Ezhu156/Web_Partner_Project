@@ -14,34 +14,87 @@
 			margin-top: 30px;
 			color: #575757;
 			margin-bottom: 15px;
-			/*margin-left: 425px;*/
 		}
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
+
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
 		}
-
 	</style>
 </head>
 <body>
 	<div id="main">
 		<center><h1> BAGELS ON THE SQUARE </h1></center>
 		<div id="container">
+			<div id="address">
+				<p> 7 Carmine St <Br> New York, NY 10014 </p>
+				<!-- <p id="note"> *Various Locations </p> -->
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.8/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.0/5 </p>
+				<p class="rate"> FOURSQUARE <br> 8.3/10 </p>
+			</div>
 		</div>
 		<div id="slideshow">
-			<img id="one" src="Images/Bagels_On_The_Square/1.jpg">
+			<img id="img" src="Images/Bagels_On_The_Square/1.jpg">
 		</div>
 		<!--<img id="dropDown" src="Corgi.jpg">-->
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Bagels_On_The_Square/1.jpg"){
@@ -70,6 +123,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	setInterval(changeSize);
 	//setInterval(rotate, 1000);
+	var text=["Any bagel spot that offers the elusive and delicious whole wheat everything bagel is a gem in my book. This is a perfect place to grab breakfast to go right off the West 4th subway stop. An egg and cheese is under $5 and you can get a bagel with plain cream cheese for about $2. The bagels are huge and always fresh; it's definitely worth a try! -Allison P.", "Probably the best quick breakfast spot IMO. The people that work here are crazy fast and super friendly. They're also open 24 hours which is insane dedication. One thing I think they could improve, like I've seen other people say, they have cut down on the amount of cream cheese you do get which is a bummer if you're paying $3.00+ for a bagel. But besides that, I have no complaints. Their blueberry cream cheese has got to be the best. -Joe B.", "Great spot for a quick bite in the morning before hitting the subway. Bacon, egg, cheese on an everything bagel is my go-to, but they have anything else you'd expect from a bagel place in NYC. -Ryan B." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

@@ -14,34 +14,87 @@
 			margin-top: 30px;
 			color: #575757;
 			margin-bottom: 15px;
-			/*margin-left: 425px;*/
 		}
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
+
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
 		}
-
 	</style>
 </head>
 <body>
 	<div id="main">
 		<center><h1> MAMA'S ON WASHINGTON SQUARE </h1></center>
 		<div id="container">
+			<div id="address">
+				<p> 1701 Stockton St <Br> San Francisco, CA 94133 </p>
+				<!-- <p id="note"> *Various Locations </p> -->
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.1/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.1/5 </p>
+				<p class="rate"> FOURSQUARE <br> 8.5/10 </p>
+			</div>
 		</div>
 		<div id="slideshow">
-			<img id="one" src="Images/Mamas_On_Washington_Square/1.jpg">
+			<img id="img" src="Images/Mamas_On_Washington_Square/1.jpg">
 		</div>
 		<!--<img id="dropDown" src="Corgi.jpg">-->
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Mamas_On_Washington_Square/1.jpg"){
@@ -70,6 +123,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	setInterval(changeSize);
 	//setInterval(rotate, 1000);
+	var text=["Just ate here and the wait is long but omg is it worth it. I had the kugelhopf which was really like regular French toast and hindsight I would've ordered something else BUT my bf ordered the monte cristo, the classic, and boy was it amazing and worth the wait. Hurray for bfs and them letting us eat their food!! So I will definitely come back despite the weight and the Montecristo will be mine! -Heather G.", "Get the Monte Cristo!  Enough said.  This is by far the best and most unique dish I've had.  Just be prepared to wait 45min+ in line on a regular weekend.  You may get better luck to get in if it's a rainy day.  Also bring enough cash on you as well.  This place is cash only or debit card if you order +$15, which you probably would since most dishes are around that price anyways. -Shirley C.", "I went there alone on a Friday noon. First, I waited outside to get in. And after I got in, I had to wait in another line to order. And then be seated. Although there was much people there and before me, I still spent half an hour to get my brunch. -Yantong Z." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

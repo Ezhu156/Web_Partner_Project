@@ -14,34 +14,87 @@
 			margin-top: 30px;
 			color: #575757;
 			margin-bottom: 15px;
-			/*margin-left: 425px;*/
 		}
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
+
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
 		}
-
 	</style>
 </head>
 <body>
 	<div id="main">
 		<center><h1> SUSHIRITTO </h1></center>
 		<div id="container">
+			<div id="address">
+				<p> 59 New Montgomery St <Br> San Francisco, CA </p>
+				<!-- <p id="note"> *Various Locations </p> -->
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.5/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.1/5 </p>
+				<p class="rate"> FOURSQUARE <br> 8.3/10 </p>
+			</div>
 		</div>
 		<div id="slideshow">
-			<img id="one" src="Images/Sushiritto/1.jpg">
+			<img id="img" src="Images/Sushiritto/1.jpg">
 		</div>
 		<!--<img id="dropDown" src="Corgi.jpg">-->
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Sushiritto/1.jpg"){
@@ -70,6 +123,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	setInterval(changeSize);
 	//setInterval(rotate, 1000);
+	var text=["CSushirrito is one of the O.G. locations that started the sushi + burrito fusion trend. It's a great place to stop by for a filling lunch while exploring the bustling streets of SoMa. Although the lines can get quite long, grabbing a quick bite here is definitely a very San Francisco experience - one I would recommend not missing out on! -Miko B.", "Due to the proximity to my office, fast service and tasty food, Sushirrito was a firm favorite that I grabbed lunch from once a week, if not more. I have not been to the any other locations and after the god knows what was that plastic in my food incident (refer to the pics attached) today, I won't be eating from this spot either. Exact copy of the e-mail I sent to Sushirrito: -Yigit B.", "Food (3/5): Sushirrito invented a new way to eat sushi. This large, sushi hand roll loaded with crispy wontons, lettuce, rice and even pork and beef, definitely gets an A+ for creativity. I tried the Geisha's Kiss (their most popular option) and found that it was loaded up with lettuce and peppers, but skimped on the yellowfin tuna. It was also a bit dry, so I was left paying an extra $0.50 to add their sriracha aoli (spicy mayo) on myself. They should really just serve it with this already on it. Avocado should also be an ingredient! -Tyler W." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>
