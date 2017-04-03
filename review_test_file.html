@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        
+    </title>
+</head>
+<body>
+<div id="changeText" ></div>
+    <script type="text/javascript">
+    var text=["I don't know if 'pure' is the word to describe it but that is exactly what the bone broth tastes like and it was great to be able to add salt and scallions as your tastebuds see fit. REALLY good.  The ribs were good but I've had better. -Kim M.", "now that I've discovered Seoul Soulongtang a couple weeks ago, my life is once again complete! I've been holding off on writing a review because my first two visits, I only had their budae jjigae, but now that I've come with a larger party and tried more dishes, I'm ready to lock in the five-star love for Seoul Soulongtang! -Debra L.", "Some of the best Korean food in Boston. I've been to Seoul Soulongtang a few times now and can attest to its quality. The dishes are generally authentic, they use good ingredients, and prepare delicious, fresh food. -Augusto T." ];
+    var counter = 0;
+    var elem = document.getElementById("changeText");
+    setInterval(change, 1000);
+    function change() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = 0; }
+    }
+    </script>
+</body>
+</html>

@@ -19,10 +19,24 @@
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
 
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+		}
+		#review p{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 25px;
 		}
 		#slideshow{
 			float: right;
@@ -34,6 +48,14 @@
 	<div id="main">
 		<h1> SEOUL SOULONGTANG </h1>
 		<div id="container">
+			<div id="address">
+				<p>1245 Commonwealth Ave. Boston, MA 02134 </p>
+			</div>
+			<hr>
+			<div id="review">
+				<p id="changeText"></p>
+			</div>
+			<hr>
 		</div>
 
 		<div id="slideshow">
@@ -41,8 +63,6 @@
 
 		</div>
 
-
-		<!--<img id="dropDown" src="Corgi.jpg">-->
 
 	</div>
 <script> 
@@ -72,11 +92,19 @@
 		img.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
 	}
 
-
 	//img.addEventListener('click',changeSource);
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+    var text=["I don't know if 'pure' is the word to describe it but that is exactly what the bone broth tastes like and it was great to be able to add salt and scallions as your tastebuds see fit. REALLY good.  The ribs were good but I've had better. -Kim M.", "Now that I've discovered Seoul Soulongtang a couple weeks ago, my life is once again complete! I've been holding off on writing a review because my first two visits, I only had their budae jjigae, but now that I've come with a larger party and tried more dishes, I'm ready to lock in the five-star love for Seoul Soulongtang! -Debra L.", "Some of the best Korean food in Boston. I've been to Seoul Soulongtang a few times now and can attest to its quality. The dishes are generally authentic, they use good ingredients, and prepare delicious, fresh food. -Augusto T." ];
+    var counter = 0;
+    var elem = document.getElementById("changeText");
+    setInterval(change, 2000);
+    function change() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = 0; }
+    }
 </script>
 </body>
 </html>
