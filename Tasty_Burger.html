@@ -16,12 +16,57 @@
 			margin-bottom: 15px;
 			margin-left: 350px;
 		}
-		#container{
+	#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,19 +79,34 @@
 	<div id="main">
 		<h1> TASTY BURGER </h1>
 		<div id="container">
+			<div id="address">
+				<p> 1301 Boylston St <Br> Boston, MA 02215 </p>
+				<p id="note"> *Various Locations </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.8/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.3/5 </p>
+				<p class="rate"> ZAGAT <br> 4.2/5 </p>
+			</div>
 		</div>
+
 
 		<div id="slideshow">
-			<img id="one" src="Images/Tasty_Burger/1.jpg">
+			<img id="img" src="Images/Tasty_Burger/1.jpg">
 
 		</div>
 
-
-		<!--<img id="dropDown" src="Corgi.jpg">-->
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Tasty_Burger/1.jpg"){
@@ -77,6 +137,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["Delicious burgers & fries, super affordable. Great atmosphere and vibe.  the staff was friendly and even putting soccer on the tv when we asked them to. would recommend for a casual lunch/dinner. definitely a great place to hang out. -Savannah K.", "Cheap, delicious & fast =) Juicy burgers, 50/50 fries & onion rings, pronto, please! This restaurant was way too convenient after our tour of Fenway Park and me and the fams were hungry. The menu was simple, services was fast and the food was superb. We ordered 3 burgers and ate them way too fast to even realize which burger was which; that's how good it all was. Get the Green Monster shake; it was probably one of the best milkshakes I have had thus far! It's conveniently located next to a Target shopping center, too, so after you've shopped and you're ready to drop, come get your grub on here! -Rebecca W.", "Can I start by saying that this place is open until 2! It's amazing especially since I'm a college student.. the food is always good and fresh and the service is SO fast! I love this place and I honestly eat here way to much.. -Sarah K." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>
