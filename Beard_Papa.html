@@ -16,28 +16,87 @@
 			margin-bottom: 15px;
 			margin-left: 425px;
 		}
-		#container{
+	#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
-		
 	</style>
 </head>
 <body>
 	<div id="main">
 		<h1> Beard Papa's </h1>
 		<div id="container">
+			<div id="address">
+				<p> 31 Harrison Ave Unit A <Br> Boston, MA 02111 </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.1/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.6/5 </p>
+				<p class="rate"> DOORDASH <br> 7/10 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Beard_papa/1.jpg">
+			<img id="img" src="Images/Beard_papa/1.jpg">
 
 		</div>
 
@@ -46,7 +105,7 @@
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Beard_papa/1.jpg"){
@@ -77,6 +136,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["Beard Papa's cream puffs are the best cream puffs ever. They use a custard-like filling that is smooth and not overly sweet. It's pumped fresh into a crispy shell when you order, so you're always getting a fresh product that won't be soggy or old. There are usually several shell and cream flavor options, so you can mix and match. -Angela T.", "Beard Papa's is a real treat! Of course it smells heavenly when you walk in, as a pastry shop should smell :) Tried the Oreo cookie, the green tea Mochi and also the dolce de leche with green tea filing which of course did not disappoint! -Linsay M.", "Yummy yummy creamy puffs in my belly! I had the vanilla custard super airy and delicious (not super sweet)! Don't forget to cash in your free check in mini puff! -Donna Y." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

@@ -16,12 +16,57 @@
 			margin-bottom: 15px;
 			margin-left: 300px;
 		}
-		#container{
+	#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,10 +79,26 @@
 	<div id="main">
 		<h1> THE PARAMOUNT </h1>
 		<div id="container">
+			<div id="address">
+				<p> 55 Greenwich Ave <br> New York, NY 10014 </p>
+				<p id="note"> *Various Locations </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.8/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.1/5 </p>
+				<p class="rate"> ZAGAT <br> 4.3/5 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/The_Paramount/1.jpg">
+			<img id="img" src="Images/The_Paramount/1.jpg">
 
 		</div>
 
@@ -46,7 +107,7 @@
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/The_Paramount/1.jpg"){
@@ -77,6 +138,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["Prime location! Very nice brunch! Went there for dinner and had fried avocado taco, very unique dish and delicious too. The service was great. Loved the cooks working there, super friendly and casual and conversational. It's a treat to sit next to the grill and watch the wonderful making of food :) -Yingna L.", "This place was recommended from someone at our hotel and it was an excellent choice! When you walk you order your food by the cashier, you pay and you go sit down and the waitress brings over the food, its a great concept and very casual which I love. We came in around 11am and there was only 2 free tables ON A MONDAY. I can only imagine how busy they get on the weekends!!the food was so good and fresh, the ambiance is super cute and the staff is super nice. For 2 breakfast entrees and 2 coffees the total was $22 which is like super cheap. Would def be back next time im in Boston! -Yamit Z.", "Just a short walk from my hotel...what a gem! Great place for breakfast/brunch. My blueberry pancakes were perfection; fresh blueberries in every bite! By far the best meal this entire trip. I can't wait to come back to Boston just to have breakfast here again! -Robeta C." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

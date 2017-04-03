@@ -16,12 +16,57 @@
 			margin-bottom: 15px;
 			margin-left: 425px;
 		}
-		#container{
+	#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,10 +79,26 @@
 	<div id="main">
 		<h1> AMORINO </h1>
 		<div id="container">
+			<div id="address">
+				<p> 249 Newbury St <Br> Boston, MA 02116 </p>
+				
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.4/5 </p>
+				<p class="rate"> FOURSQUARE <br> 9/10 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Amorino/1.jpg">
+			<img id="img" src="Images/Amorino/1.jpg">
 
 		</div>
 
@@ -46,7 +107,7 @@
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Amorino/1.jpg"){
@@ -77,6 +138,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["I finally found a gelato place that tastes authentic! I've been to Europe a few times, so I know my gelato well and when I get it in the US, it does not taste authentic. The strawberry and passion fruit are amazing! The only con is that it is very, very pricey compared to ice cream options and the gelato in Europe. I would definitely recommend this place if you are willing to spend a bit more. -Marta P.", "I LOVE that they let you sample as many flavors as you'd like before making your decision. AND they let you have as many flavors as you'd like, regardless of which size you order (within reason). I ordered a medium gelato with 4 flavors: milk chocolate, dark chocolate, chocolate hazelnut, and vanilla. They don't skimp on their portions here: the gelato was stacked high above the cup rim. Their gelato is smooth and high quality. -Courtney P.", "The rose-shaped gelato at Amorino is Instagram gold. Yes, pricey for sure, but so beautiful. The employees aren't personable and friendly, but it's Newbury Street, so I didn't expect too much. I didn't get the macaron in the middle because I already felt my wallet crying buying the medium gelato, so I might try that next time. Overall, the gelato itself was bangin' and everyone on Newbury St. was staring at my gelato was I left their building, since it is so pretty! -Jen F." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

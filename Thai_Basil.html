@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
-	<title> THAI BASIL </title>
+	<title> PHO BASIL </title>
 	<style>
 		#main{
 			width: 1200px;
@@ -16,12 +16,57 @@
 			margin-bottom: 15px;
 			margin-left: 400px;
 		}
-		#container{
+	#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -32,21 +77,35 @@
 </head>
 <body>
 	<div id="main">
-		<h1> THAI BASIL </h1>
+		<h1> PHO BASIL </h1>
 		<div id="container">
+			<div id="address">
+				<p> 177 Massachusetts Ave Ste A <Br> Boston, MA 02115 </p>
+				<p id="note"> *Various Locations </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.1/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.4/5 </p>
+				<p class="rate"> FOURSQUARE <br> 9.1/10 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Thai_Basil/1.jpg">
+			<img id="img" src="Images/Thai_Basil/1.jpg">
 
 		</div>
 
 
-		<!--<img id="dropDown" src="Corgi.jpg">-->
-
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Thai_Basil/1.jpg"){
@@ -77,6 +136,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["This was such a nice surprise! Coming from Toronto I've had a lot of viet food, but this place wins hands down in terms of variety and taste. I had the bun with lemongrass chicken and Thai tea bubble tea. The bun was hugeeee and very flavourful. Bubble tea was delicious and just perfectly sweet. It was such a satisfying lunch, keeping this on my list next time I come back to Boston!! -Yukie C.", "Really great pho! Service was friendly and fast and the food was just great! When we visited it was a really cold day and it was the perfect place to duck in and have a deliciously warm meal. I had the pho sate and it was spicy and delicious. I would highly recommend this place. -Kayle P.", "We the chicken noodle pho, and drunken noodles with crispy chicken. Pho was delicious! The large was enough for 2! We also loved the crispy chicken with the sweet dipping sauce. We're so glad we found this delicious place! -Priscilla P." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

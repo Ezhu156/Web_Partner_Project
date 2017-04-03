@@ -19,9 +19,54 @@
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,16 +79,32 @@
 	<div id="main">
 		<h1> CHA CHA MATCHA </h1>
 		<div id="container">
+			<div id="address">
+				<p> 373 Broome St <Br> New York, NY 10013 </p>
+		
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.9/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.5/5 </p>
+				<p class="rate"> FOURSQUARE <br> 8.5/10 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Cha_Cha_Matcha/1.jpg">
+			<img id="img" src="Images/Cha_Cha_Matcha/1.jpg">
 
 		</div>
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Cha_Cha_Matcha/1.jpg"){
@@ -74,6 +135,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["Love this place! Great drinks! Great vibes! I come here all the time! Their matcha lemonade is perfect in spring, summer...and I even get it in the winter too! Their white chocolate latte with soy milk is also one of my favorite drinks! -Abigail T.", "Such a cute place!!! Love the decor and the vibe here, with all of the pastel pink and green. Also, the soft serve lavender & green tea mix was delicious - although a little strong on the lavender flavor. The service is also AWESOME. We were here until they closed, and when they did, the baristas offered us all of their leftover baked goods!! So sweet of them. I will definitely be coming back here for more treats :) -Emily C.", "This the place of my dreams. The aesthetic, the name, the design, the menu. Literally a dream come true. The blush pink, green, white color scheme is to die for! Lighting is also ooooooh~ -Chelsea C." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

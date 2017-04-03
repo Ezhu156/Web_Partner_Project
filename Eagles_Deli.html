@@ -19,14 +19,60 @@
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
+		
 		
 	</style>
 </head>
@@ -34,10 +80,26 @@
 	<div id="main">
 		<h1> EAGLES DELI </h1>
 		<div id="container">
+			<div id="address">
+				<p> 1918 Beacon St <Br>Brighton, MA 02135</p>
+			
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.6/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.2/5 </p>
+				<p class="rate"> FACEBOOK <br> 4.6.5 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Eagles_Deli/1.jpg">
+			<img id="img" src="Images/Eagles_Deli/1.jpg">
 
 		</div>
 
@@ -46,7 +108,7 @@
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Eagles_Deli/1.jpg"){
@@ -77,6 +139,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+		var text=["My boyfriend saw this place on TV and said we needed to try it while we were visiting Boston. I ordered the brunch burger and he ordered the cali burger- Both great choices and we enjoyed them. Nice establishment with tons of options on their menu. There's something for everyone! -Tiffany L.", "This Gourmand Burger Joint sports giant half-pound burgers with fries. They offer culinary Bonanza that cap out at six pound burgers! If looking for a fun and casual meal, this is a great option. -R. P.", "Ordered delivery and it showed up so quickly! Like 30 mins before foodler said it would be here. We had sausage and we also ordered a burger with cheese fries. The border burger is delicious. Juicy and huge. We didn't think it would be that big. It has cheese, jalepenos, onion rings, and lettuce. Yum!!!! Totally a must if you're anywhere near bc or oak square. -Rebecca C." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

@@ -16,12 +16,57 @@
 			margin-bottom: 15px;
 			margin-left: 350px;
 		}
-		#container{
+	#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,10 +79,26 @@
 	<div id="main">
 		<h1> THE GREY DOG </h1>
 		<div id="container">
+			<div id="address">
+				<p> 242 W 16th St <Br> New York, NY 10011 </p>
+				<p id="note"> *Various Locations </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.1/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.4/5 </p>
+				<p class="rate"> ZAGAT <br> 4/5 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/The_Grey_Dog/1.jpg">
+			<img id="img" src="Images/The_Grey_Dog/1.jpg">
 
 		</div>
 
@@ -46,7 +107,7 @@
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/The_Grey_Dog/1.jpg"){
@@ -77,6 +138,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["This place is delicious, and so many options, the menu goes on and on and they have something for everyone here.  I came here twice and each time it was equally delicious.  The staff is super friendly, pleasant and helpful.  You order at the counter and then grab a seat and they serve the food to you.  Strongly recommend for breakfast, lunch, or brunch.  They also will take orders to go which isn't bad :)  It wasn't too crowded when we were there,  but apparently this place fills up pretty quickly, which I can totally see why.  Atmosphere is super casual and laid back, which I like, especially in this part of town. -Lauren F.", "The Grey Dog definitely has that,Central Perk coffee house from the TV show Friends feel. Your given a table, but go to the counter to order, and they have gluten free options! But don't make the same mistake I did by replacing the marble rye in the Reuben with the gluten free flat-bread! -Patrick V.", "Very comfortable place with wonderful, friendly counter service. Ordered a delicious (not-too-sweet) mulled wine here, and a (very very sweet) hot chocolate.  The food menu looks amazing! -Heather W." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

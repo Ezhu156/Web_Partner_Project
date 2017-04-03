@@ -19,14 +19,60 @@
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
+
 		
 	</style>
 </head>
@@ -34,16 +80,33 @@
 	<div id="main">
 		<h1> BING BOX </h1>
 		<div id="container">
+			<div id="address">
+				<p> 125 2nd Ave <Br> New York, NY 10003 </p>
+				
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.3/5 </p>
+				<p class="rate"> FOURSQUARE <br> 7.1/10 </p>
+			</div>
 		</div>
 
+
 		<div id="slideshow">
-			<img id="one" src="Images/Bing_Box/1.jpg">
+			<img id="img" src="Images/Bing_Box/1.jpg">
 
 		</div>
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Bing_Box/1.jpg"){
@@ -74,6 +137,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["A viral Facebook video of BingBox brought me to try the place out during my last visit to New York. Facebook videos covering restaurants tend to be hit or miss with me (i.e. Raclette, hit; Cacio e Pepe, miss), so I try to keep low expectations when tying out the hype. -Jamie K.", "I order the Thai Iced tea flavored and i must say it has a lot of flavor. Usually ice are more ice than flavored and I have having a bite and it taste like just ice and no flavored but @ Bingbox the flavored with strong and they were not stingy with it :) Also, they close at 10PM and we came at 9:50PM and still made our Ice and even let us sit inside to finish our desserts while they were cleaning up :) YAY!!! -Linda C.", "Definitely still delicious. The sesame flavor is no longer available, so I ordered the Thai ice tea flavor again. I ordered it with mochi, lychee jelly, condensed milk and Nutella. It would have been great if I didn't add the Nutella drizzle. Don't get me wrong, I do love Nutella. However, the Nutella drizzle overpowered everything and I can barely taste the Thai ice tea flavor or lychee jelly. -Susan L." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

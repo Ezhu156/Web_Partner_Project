@@ -19,9 +19,54 @@
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,10 +79,25 @@
 	<div id="main">
 		<h1> GREAT HARVEST BREAD CO </h1>
 		<div id="container">
+			<div id="address">
+				<p> 316 Walnut St <Br> Newtonville, MA 02460 </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.1/5 </p>
+				<p class="rate" id="two"> ZOMATO <br> 3.8/5 </p>
+				<p class="rate"> FACEBOOK <br> 4.8/5 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Great_Harvest_Bread_Co/1.jpg">
+			<img id="img" src="Images/Great_Harvest_Bread_Co/1.jpg">
 
 		</div>
 
@@ -46,7 +106,7 @@
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Great_Harvest_Bread_Co/1.jpg"){
@@ -77,6 +137,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+		var text=["Fresh, quality ingredients make for great sandwiches. This place is great. I made my own sandwich but my boyfriend had the spicy apple bacon grilled cheese. Both were delicious. We'll be back. -Julia T.", "Am in Boston for work on a monthly basis.  When I have time to waste before my meeting I try to come here for their excellent breakfast items.  Before ordering any of their bread they allow you to sample it, which is a nice extra to a great bakery. -Michael C.", "Excellent bread.  I've had their mixed berry scones, apple pie bread, cinnamon swirl bread, cheese garlic bread, and pepperoni bread, and they are ALL yummy.  Service is excellent too.  The guy gave me a fresh loaf of cinnamon swirl bread last time- legit right out of the oven so the bread is still piping hot! -Lisa C." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

@@ -16,12 +16,57 @@
 			margin-bottom: 15px;
 			margin-left: 175px;
 		}
-		#container{
+	#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,10 +79,26 @@
 	<div id="main">
 		<h1> ZAFTIGS DELICATESSEN </h1>
 		<div id="container">
+			<div id="address">
+				<p> 335 Harvard St <Br> Brookline, MA 02446 </p>
+				
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.8/5 </p>
+				<p class="rate" id="two"> ZAGAT <br> 4.3/5 </p>
+				<p class="rate"> FACEBOOK <br> 4.5/5 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Zaftigs_Delicatessen/1.jpg">
+			<img id="img" src="Images/Zaftigs_Delicatessen/1.jpg">
 
 		</div>
 
@@ -46,7 +107,7 @@
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Zaftigs_Delicatessen/1.jpg"){
@@ -77,6 +138,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["Best brunch in Brookline. Lines get long during the weekend (wait can be ~45 min), but your buzzer still works a few blocks away from the restaurant, so use the wait time as an opportunity to walk around Coolidge Corner. -Jenny S.", "This was my first time here and I enjoyed the food! It was very delicious and the wait wasn't even long at all. I got eggs Benedict and the eggs were made with perfection! We got knish and I would recommend not getting that.. It was veryyyy bland. We got the broccoli cheese and meat one. The service was a bit slow but our waiter was extremely nice so that evens out :) will be coming back here again to try their other food! -Anna M.", "So so good. Had the turkey sandwich on pumpernickel with everything on it. Big enough for 2 meals and reasonably priced. The fries are AMAZING. Don't even need ketchup. Best time of day to go here is most likely in the afternoon. Everyone seems to go for brunch/breakfast -- if you don't mind a wait, go for brunch during the weekend. They also serve all day breakfast. -Marissa B." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

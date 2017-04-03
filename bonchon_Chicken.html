@@ -19,9 +19,54 @@
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,10 +79,26 @@
 	<div id="main">
 		<h1> BONCHON CHICKEN </h1>
 		<div id="container">
+			<div id="address">
+				<p> 123 Brighton Ave <Br> Allston, MA 02134 </p>
+				
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.7/5 </p>
+				<p class="rate" id="two"> ZOMATO <br> 3.8/5 </p>
+				<p class="rate"> GOOGLE <br> 4.4/5 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Bonchon_Chicken/1.jpg">
+			<img id="img" src="Images/Bonchon_Chicken/1.jpg">
 
 		</div>
 
@@ -46,7 +107,7 @@
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Bonchon_Chicken/1.jpg"){
@@ -77,6 +138,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["BEST Korean Fried Chicken I've taken everyone I know here and they've all loved it. When I go with a group of people, we always get the half and half (spicy and mild) combo (wings and drumsticks). When it's just me and my boyfriend, we'll get the spicy combo. I've gotten Korean fried chicken at other places and the seasoning and crunch is never as on point as it is at Bonchon. -Vy H.", "This review is based on my love for the tteokbokki here. There's something SO comforting about these cheesy rice cakes swimming in red, hot gochujang. It's probably the best thing to purchase that can deliver in taste and also satiate your hunger. Sometimes the rice cakes are a bit hard and the sauce isn't consistent but when it's good, IT'S SO GOOD. -Caroline S.", "This place is amazing ! Chicken was a bomb. Spicy is a bit spicier than I expected but overall sushi was great and all appetizers and food were amazing. I would recommend this place all day long! -Dan S." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

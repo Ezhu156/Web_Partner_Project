@@ -16,12 +16,57 @@
 			margin-bottom: 15px;
 			margin-left: 400px;
 		}
-		#container{
+	#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,19 +79,33 @@
 	<div id="main">
 		<h1> SHABU ZEN </h1>
 		<div id="container">
+			<div id="address">
+				<p> 16 Tyler St <Br> Boston, MA 02111</p>
+				<p id="note"> *Various Locations </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.1/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.4/5 </p>
+				<p class="rate"> ZAGAT <br> 4.1/5 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Shabu_Zen/1.jpg">
+			<img id="img" src="Images/Shabu_Zen/1.jpg">
 
 		</div>
 
 
-		<!--<img id="dropDown" src="Corgi.jpg">-->
-
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Shabu_Zen/1.jpg"){
@@ -77,6 +136,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["A+ for the lunch special and being open on the blizzardy days in the winter of 2017 that everyone else closed. Great service, reasonable prices, solid meal. -Aaron R.", "This was my first experience with hot pot and my server was really sweet about helping me order and then giving me cook times. The vegetable plate is enormous and come with a bunch of different veggies, even a couple of things I'd never seen before. Super reasonably priced. The ambience isn't what you come for though. -Carolyn M.", "Hands down, this is the BEST shabu-shabu I've ever had in my whole entire life. My first time here was when I visited Boston for my sister's graduation as a kid almost 10 years ago. She took us here because it was her absolute favorite place for Shabu. Fast forward to 2016, I'm back and this place is still standing.. which speaks volumes about their food. -Anne T." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

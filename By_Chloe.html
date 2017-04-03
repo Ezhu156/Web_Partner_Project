@@ -19,31 +19,91 @@
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
-		
 	</style>
 </head>
 <body>
 	<div id="main">
 		<h1> BY CHLOE </h1>
 		<div id="container">
+			<div id="address">
+				<p> 185 Bleecker St <Br> New York, NY 10012</p>
+				<p id="note"> *Various Locations </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.1/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.3/5 </p>
+				<p class="rate"> DOORDASH <br> 8/10 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/By_Chloe/1.jpg">
+			<img id="img" src="Images/By_Chloe/1.jpg">
 
 		</div>
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/By_Chloe/1.jpg"){
@@ -74,6 +134,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["I was so happy that this place was as good as I had heard it was! The kale artichoke dip was delicious, and a pretty large portion- I couldn't finish it! I also had the kale Caesar salad. I was skeptical about the shiitake bacon, but I ended up loving it because of the distinct flavor. To finish off my meal, I had a coconut beverage. So refreshing! -Katie A.", "That BBQ pork burger is so good!!! The regular burger is just okay (so small too), I've had/made better ones. The mac&cheese was delicious.. I liked the beet ketchup- definitely innovative! Overall, I love this vegan food spot. I hope there are more of them!! -Mia S.", "I love this place so much. All locations are great and the prices are great for the quality of food but also the portions. You will not be hungry when you leave here! Taco salad and pesto pasta are fantastic. -Abby S." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>
