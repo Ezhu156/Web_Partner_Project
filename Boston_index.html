@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+	<title>FOOD</title>
+	<style>
+		#main{
+			width:1200px;
+			margin:auto;
+		}
+		h1{
+			font-family: 'Slabo 27px, serif';
+			font-size: 70px;
+			margin-top: 30px;
+			color: #575757;
+			margin-left:200px;
+		}
+		#container{
+			width: 800px;
+			height:75px;
+			border: 5px solid #3595A1;
+			margin-top: 30px;
+			margin-left: 200px;
+		}
+		nav{
+			border: 3px solid #3595A1;
+			width: 804px;
+			margin-left: 200px;
+	
+		}
+		a{
+			display: block;
+			text-decoration: none;
+			font-size: 60px;
+			color: #575757;
+		}
+		a:hover{
+			background-color: #cccccc;
+		}
+	</style>
+</head>
+<body>
+	<div id="main">
+		<h1> What do you want to eat? </h1>
+		<div id="container">
+		</div>
+
+		<nav class="dropDown">
+			<a class="dropDown" href="Boston_Breakfast.html"> BREAKFAST </a>
+			<a class="dropDown" href="Boston_Lunch.html"> LUNCH </a>
+			<a class="dropDown" href="Boston_Dinner.html"> DINNER </a>
+			<a class="dropDown" href="Boston_Dessert.html"> DESSERT </a>
+			<a class="dropDown" href="Boston_Drinks.html"> DRINKS </a>
+		</nav>
+
+
+	</div>
+
+	<script src="jquery-3.1.1.min.js"> </script>
+	<script>
+	var drop= $('.dropDown');
+	var select= $('#container');
+	function hide(){
+		drop.hide();
+	}
+	function show(){
+		drop.show();
+	}
+	hide();
+	select.on('click', show);
+	</script>
+</body>
+</html>
