@@ -19,9 +19,54 @@
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,10 +79,26 @@
 	<div id="main">
 		<h1> PAVEMENT COFFEEHOUSE </h1>
 		<div id="container">
+			<div id="address">
+				<p> 286 Newbury St <Br> Boston, MA 02115 </p>
+				<p id="note"> *Various Locations </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.8/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.2/5 </p>
+				<p class="rate"> FOURSQUARE <br> 8.3/10 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Pavement_Coffeehouse/1.jpg">
+			<img id="img" src="Images/Pavement_Coffeehouse/1.jpg">
 
 		</div>
 
@@ -46,7 +107,7 @@
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Pavement_Coffeehouse/1.jpg"){
@@ -77,6 +138,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["The Spanish Latte is UNREAL! Staff was very friendly and the food was delicious! The place is simplistic and easy to find. I was in a rush and there was no wait. Can't wait to get back for another Spanish Latte. Did I mention the Spanish Latte was unbelievable? -Brighid B.", "I'm a barista myself and this is the only other place I go to get lattes (besides the free ones I get from my work). The spanish lattes are just SO GOOD. Very consistent nice presentation, taste, and latte art. -Hayley L.", "Fantastic coffee - in my top 5 in the Boston metro area for SURE if not my favorite - these baristas are no schmucks. -Matthew L." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

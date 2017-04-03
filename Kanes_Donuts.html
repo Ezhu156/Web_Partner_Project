@@ -19,25 +19,85 @@
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
 			float: right;
 			margin-top: 30px;
-		
 	</style>
 </head>
 <body>
 	<div id="main">
 		<h1> KANE'S DONUTS </h1>
 		<div id="container">
+			<div id="address">
+				<p> 120 Lincoln Ave <Br>Saugus, MA 01906 </p>
+				<p id="note"> *Various Locations </p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.5/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.7/5 </p>
+				<p class="rate"> FACEBOOK <br> 4.8/5 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Kanes_Donuts/1.jpg">
+			<img id="img" src="Images/Kanes_Donuts/1.jpg">
 
 		</div>
 
@@ -46,7 +106,7 @@
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Kanes_Donuts/1.jpg"){
@@ -77,6 +137,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["This place is amazing. Can't beat the price of a dozen donuts. Service is quick, fun and attentive. Favorite donut was honey dipped, chocolate glazed and Boston cream. The monthly specials are tasty and fun also! If I could have a dozen everyday I would be a 1000 pounds, then ever ending selection will keep me coming back! Kane's is my new favorite coffee and donut shop! -Jacob I.", "I love Kane's Donuts, a North Shore staple. They open super early, which is great, and staff is friendly. Kane's has a variety of fun, funky flavors, but I always go for traditional cake donuts when I'm here. The honey dip and toasted coconut. remain my favorites. Donuts are huge--I can barely finish one, no matter how hungry. I keep meaning to try the coffee (how great does caramel nut sound?), but have yet to get around to it, though it's on my hit list. If you love donuts, Kane's is a must-visit. -Lia M.", "OMG....!!!!! If you want to put a smile on your face in 2017 and throw your resolutions out the window I suggest you experience these AMAZING donuts!  Seriously, the Bruins could use them as super sized hockey pucks!  You probably won't catch Tom Brady here, unless they invent an avocado kale donut, but hey you only live once!  This should be on your bucket list of guilty pleasures!  Their honey bun is the size of a dinner plate.   This establishment is def where diets go to die and have no regrets! #YOLO -Sharon V." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

@@ -19,9 +19,54 @@
 		#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,16 +79,30 @@
 	<div id="main">
 		<h1> JULIANNA'S PIZZA </h1>
 		<div id="container">
+			<div id="address">
+				<p> 19 Old Fulton St <Br> Brooklyn, NY 11201</p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.4/5 </p>
+				<p class="rate" id="two"> ZOMATO <br> 4.1/5 </p>
+				<p class="rate"> GOOGLE <br> 4.5/5 </p>
+			</div>
 		</div>
-
 		<div id="slideshow">
-			<img id="one" src="Images/Juliannas/1.jpg">
+			<img id="img" src="Images/Juliannas/1.jpg">
 
 		</div>
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Juliannas/1.jpg"){
@@ -74,6 +133,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["There's a reason this place is one of the highest, if not top, rated pizzerias in the country. We ordered the #1 and #4 specialty pies and they were served in less than 20 minutes, baked to chewy, savory perfection. Our meal was best enjoyed with a cold chalice of War Flag, but Juliana's offered an impressive array of beverages, along with a some salads and desserts. Our server, Paul, was attentive and amicable, and we left our late lunch satisfied in all aspects. -Jadon R.", "Definitely One of the Best Pizzas I have ever had!! My fiancé and I Waited in line for about 20-25 min. The inside of this restaurant is quite lovely. What I really enjoyed about this place is that you don't get seated with random people on a table! That place was crowded and outside was a long waiting line. Still we got to seated just by ourselves. That doesn't happen in all the restaurants unfortunately. So that's a big thumb up!! -Jessica D.", "HOOOO MAAA GOD. The Margherita and White pizza at Juliana's Pizza was beyond amazing. It was life-changing. This was the best pizza I've ever ate in my entire life. I've been to Italy! Okay? Italy. And I still think that this is the best pizza place ever!!!!! -Anna I." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

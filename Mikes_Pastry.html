@@ -16,12 +16,57 @@
 			margin-bottom: 15px;
 			margin-left: 325px;
 		}
-		#container{
+				#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,10 +79,26 @@
 	<div id="main">
 		<h1> MIKE'S PASTRY </h1>
 		<div id="container">
+			<div id="address">
+				<p> 300 Hanover St <Br> Boston, MA 02113</p>
+			
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 4.1/5 </p>
+				<p class="rate" id="two"> ZOMATO <br> 4.9/5 </p>
+				<p class="rate"> FOURSQUARE <br> 8.7/10 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Mikes_Pastry/1.jpg">
+			<img id="img" src="Images/Mikes_Pastry/1.jpg">
 
 		</div>
 
@@ -46,7 +107,7 @@
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Mikes_Pastry/1.jpg"){
@@ -77,6 +138,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["Is there a way to give more than five stars?  My wife and I stopped there in March, 2017.  We arrived around 8 on a Saturday night and there were easily 75 people in line.  We ordered a cannolli, tiramisu, and eclair.  It was beyond fantastic. -Rob K.", "While visiting Boston we couldn't help but notice the overwhelming amount of people walking around with Mike's Pastry boxes. Not the kind of people to miss out on a local treat we made the trip into the North End to see what the fuss was about. You can't miss his place because he line will snake out the door and down the sidewalk. However, the extremely efficient staff will have you in and out in no time, so don't let the wait deter you! -Diana N.", "Visiting Boston and my friend said, We MUST go to Mike's Pastry! It was out-freaking-standing!! I just got the chocolate covered Cannoli  but we will be going back later tonight so I can grab a bunch of them to bring home!! This is a MUST GO TO kind if place. It's a good thing I don't live here or I'd most definitely wind up diabetic!! -Lisa T." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>

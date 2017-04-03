@@ -16,12 +16,57 @@
 			margin-bottom: 15px;
 			margin-left: 325px;
 		}
-		#container{
+				#container{
 			width: 370px;
 			height: 527px;
-			border: 5px solid #3595A1;
+			
 			margin-top: 30px;
 			display: inline-block;
+
+		}
+		#address{
+			width:320px;
+		}
+		#address p{
+			color: #A8A8A8;
+			font-size: 27px;
+			margin-left: 25px;
+			margin-top: 15px;
+			margin-bottom: 5px;
+		}
+		#address #note{
+			color: #A8A8A8;
+			font-size: 15px;
+			margin-left: 25px;
+			margin-top: 0px;
+		}
+		#review p{
+			width:290px;
+			color: #A8A8A8;
+			font-size: 20px;
+			margin-left: 5px;
+			display: inline-block;
+			height: 300px;
+		}
+		#right{
+			transform: rotate(180deg);
+		}
+		#rating{
+			color: #A8A8A8;
+			font-size: 19px;
+			margin-left: 5px;
+		}
+		.rate{
+			width:80px;
+			display: inline-block;
+			margin-left: 5px;
+
+		}
+		#two{
+			border-left: 3px solid #ccc;
+			border-right: 3px solid #ccc;
+			padding-left: 15px;
+			padding-right: 15px;
 
 		}
 		#slideshow{
@@ -34,10 +79,25 @@
 	<div id="main">
 		<h1> PARIS CREPERIE </h1>
 		<div id="container">
+			<div id="address">
+				<p> 278 Harvard St <Br> Brookline, MA 02446</p>
+			</div>
+			<hr>
+			<div id="review">
+				<img id="left" src="Images/arrow.jpg">
+				<p id="changeText"></p>
+				<img id="right" src="Images/arrow.jpg">
+			</div>
+			<hr>
+			<div id="rating">
+				<p class="rate"> YELP <br> 3.9/5 </p>
+				<p class="rate" id="two"> GOOGLE <br> 4.1/5 </p>
+				<p class="rate"> FACEBOOK <br> 4.5/5 </p>
+			</div>
 		</div>
 
 		<div id="slideshow">
-			<img id="one" src="Images/Paris_Creperie/1.jpg">
+			<img id="img" src="Images/Paris_Creperie/1.jpg">
 
 		</div>
 
@@ -46,7 +106,7 @@
 
 	</div>
 <script> 
-	var img= document.querySelector('img');
+	var img= document.querySelector('#img');
 	function changeSource(){
 		var currentSource = img.getAttribute('src');
 		if (currentSource == "Images/Paris_Creperie/1.jpg"){
@@ -77,6 +137,24 @@
 	setInterval(changeSource,2000); //every 2 seconds, the image changes
 	//setInterval(changeSize, 500);
 	//setInterval(rotate, 1000);
+	var text=["I love Paris! Since 6th grade, this was a hangout spot after school. Despite how tough it can get to find seating, the ambiance is very low key and comfortable. I've had nothing but good experience with the employees there, and I love the crepes! I have brought numerous people here to take their crepe virginity, and they wanna come back! haha. -Ayla S.", "Great little cafe located in Coolidge Corner. I'm not sure how long it's been around but I don't remember it from when I used to live here. It's a very cozy little spot..I'm sure I would've come here all the time if it had been around. -Andrew B.", "Still amazing! Had a late night craving last night and thank goodness they open until 10pm!!! Me and hubby shared a s'mores crepe and amazing as always. I know the graham cracker is infused into the crepe but next time I'm gonna ask to see if they can add it into the marshmallow for some crunchiness. -Marlana Y." ];
+    var counter = 0;
+    var right= document.getElementById('right');
+    var left= document.getElementById('left');
+    var elem = document.getElementById("changeText");
+    //setInterval(change, 2000);
+    right.addEventListener('click',rightchange);
+    left.addEventListener('click',leftchange);
+    function rightchange() {
+     elem.innerHTML = text[counter];
+        counter++;
+        if(counter >= text.length) { counter = text.length-1; }
+    }
+    function leftchange() {
+     elem.innerHTML = text[counter];
+        counter-=1;
+        if(counter <= 0) { counter = 0; }
+    }
 </script>
 </body>
 </html>
